@@ -51,6 +51,12 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        $student = $this->student->find($id);
+        $student = Student::find($id);
+        if ($student) {
+            $student->delete();
+            return response()->json(['message' => 'Student deleted successfully'], 200);
+        }
+        return response()->json(['message' => 'Student not found'], 404);
+    
     }
 }
