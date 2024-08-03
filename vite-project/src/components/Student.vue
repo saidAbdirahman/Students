@@ -105,7 +105,21 @@ export default {
                     console.error('Error saving data:', error);
                 });
         },
-     
+        edit(student) {
+            this.student = { ...student }; // Copy student to avoid reference issues
+        },
+        updateData() {
+            axios.put(`http://127.0.0.1:8000/api/student/${this.student.id}`, this.student)
+                .then(() => {
+                    alert('Updated');
+                    this.StudentLoad();
+                    this.resetStudent();
+                })
+                .catch(error => {
+                    console.error('Error updating data:', error);
+                });
+        },
+        
     }
 };
 </script>
