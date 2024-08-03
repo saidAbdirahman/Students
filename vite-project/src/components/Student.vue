@@ -119,7 +119,24 @@ export default {
                     console.error('Error updating data:', error);
                 });
         },
-        
+        remove(student) {
+            axios.delete(`http://127.0.0.1:8000/api/student/${student.id}`)
+                .then(() => {
+                    alert('Deleted');
+                    this.StudentLoad();
+                })
+                .catch(error => {
+                    console.error('Error deleting data:', error);
+                });
+        },
+        resetStudent() {
+            this.student = {
+                id: '',
+                name: '',
+                address: '',
+                phone: ''
+            };
+        }
     }
 };
 </script>
